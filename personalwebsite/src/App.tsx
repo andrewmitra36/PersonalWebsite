@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Box, Tab, Tabs, Typography } from "@material-ui/core";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppState {
+  activeTab: number;
+}
+
+class App extends React.Component<object, AppState> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      activeTab: 0,
+    };
+  }
+
+  setActiveTab = (event: any, activeTab: number) => {
+    this.setState({
+      activeTab,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Tabs value={this.state.activeTab} onChange={this.setActiveTab}>
+          <Tab label="Home" value={0} />
+          <Tab label="About" value={1} />
+          <Tab label="Skills" value={2} />
+          <Tab label="Experience" value={3} />
+          <Tab label="Projects" value={4} />
+          <Tab label="Contact" value={5} />
+        </Tabs>
+        <Box>
+          <Typography variant="h2" style={{ margin: 20 }}>
+            Howdy! I'm Andrew
+          </Typography>
+        </Box>
+      </div>
+    );
+  }
 }
 
 export default App;
